@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 import joblib
 
 # Load train data
@@ -9,7 +9,7 @@ X_train = train.drop("species", axis=1)
 y_train = train["species"]
 
 # Train model
-model = LogisticRegression(max_iter=200)
+model = RandomForestClassifier(n_estimators=100)
 model.fit(X_train, y_train)
 
 # Save model
