@@ -1,0 +1,62 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw.csv
+      hash: md5
+      md5: 013d0da08d6506664ce640459139176b
+      size: 3858
+    - path: src/preprocess.py
+      hash: md5
+      md5: e4bd98670247b6aa1e78d4c619024b6d
+      size: 544
+    outs:
+    - path: data/test.csv
+      hash: md5
+      md5: d21558c0b167dadf6ab82e7f8f4062c0
+      size: 848
+    - path: data/train.csv
+      hash: md5
+      md5: 9f2b0c394979592cbef652745ba5a09c
+      size: 3220
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: 9f2b0c394979592cbef652745ba5a09c
+      size: 3220
+    - path: src/train.py
+      hash: md5
+      md5: 76bc0fbd48ccaadfad52393a9f93af42
+      size: 362
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 07d0b2f2d40b206d273b5c241f560146
+      size: 1391
+  validate:
+    cmd: python src/validate.py
+    deps:
+    - path: data/test.csv
+      hash: md5
+      md5: d21558c0b167dadf6ab82e7f8f4062c0
+      size: 848
+    - path: models/model.pkl
+      hash: md5
+      md5: 07d0b2f2d40b206d273b5c241f560146
+      size: 1391
+    - path: src/validate.py
+      hash: md5
+      md5: cf8ae6d5e41dc292ac8ebb8cedf57911
+      size: 740
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: 354bf16174ce36ae898245642a458c0d
+      size: 25
+    - path: plots/confusion_matrix.png
+      hash: md5
+      md5: 29e288234d935e329a6bc946e93b0df1
+      size: 8921

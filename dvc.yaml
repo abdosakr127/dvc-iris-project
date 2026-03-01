@@ -1,0 +1,28 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw.csv
+    outs:
+      - data/train.csv
+      - data/test.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/train.csv
+    outs:
+      - models/model.pkl
+
+  validate:
+    cmd: python src/validate.py
+    deps:
+      - src/validate.py
+      - models/model.pkl
+      - data/test.csv
+    metrics:
+      - metrics/metrics.json
+    plots:
+      - plots/confusion_matrix.png
