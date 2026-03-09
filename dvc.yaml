@@ -16,13 +16,8 @@ stages:
     outs:
       - models/model.pkl
 
-  validate:
-    cmd: python src/validate.py
+  tune:
+    cmd: python src/tune.py
     deps:
-      - src/validate.py
-      - models/model.pkl
-      - data/test.csv
-    metrics:
-      - metrics/metrics.json
-    plots:
-      - plots/confusion_matrix.png
+      - src/tune.py
+      - data/train.csv

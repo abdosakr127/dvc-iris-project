@@ -1,0 +1,7 @@
+[core]
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/abdosakr127/MLOPS.dvc
+    user = abdosakr127
+    password = 31725f4a4134a8eaad172f7183aa6de68f06b5d4
+    auth = basic
